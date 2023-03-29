@@ -1,0 +1,84 @@
+.profileedit
+{
+    width:50% !important;
+    margin:auto;
+    background: white;
+    box-shadow: 4px 4px 4px 4px;
+    padding:3rem;
+    border-radius:10px;
+    margin-bottom: 5rem !important;
+    padding-bottom: 3rem !important;
+    border: 1px solid #23236A;
+    margin-top: 3rem !important;
+}
+.profileedit h2
+{
+    color:black;
+    font-weight:700;
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    margin-bottom: 1rem;
+}
+.profileedit .btnupdate
+{
+    background-color:#23236A !important;
+    color:white !important;
+  
+  
+    text-align: center !important;
+    width: 60%;
+    margin: auto;
+    margin-top: 1.5rem;
+    padding-bottom: 0.7rem;
+    padding-top: 0.7rem;
+    border-radius: 0.5rem;
+   
+}
+.profileedit .btnupdate:hover{
+    background-color:white !important;
+    color:#23236A !important;
+    border: 1px solid #23236A !important;
+}
+
+form label{
+    padding-left: 0.2rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+}
+
+form input
+{
+    margin-top: 0.2rem !important;
+    margin-bottom: 0.7rem !important;
+    border-radius: 1rem;
+    padding: 0.3rem;
+    padding-left: 1rem;
+    
+}
+
+.hiddeninput
+{
+    display: none !important;
+}
+
+.btn-color
+{
+    background: #23236A !important;
+}
+
+
+
+.card
+{
+    box-shadow: 0.4rem 0.4rem 0.4rem 0.4rem !important;
+    border: 1px solid #23236A;
+    width: 40rem !important;
+    margin: auto !important;
+}
+
+.fa
+{
+    color: #23236A !important;
+}
