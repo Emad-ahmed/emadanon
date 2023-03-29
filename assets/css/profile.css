@@ -74,11 +74,20 @@ form input
 {
     box-shadow: 0.4rem 0.4rem 0.4rem 0.4rem !important;
     border: 1px solid #23236A;
-    width: 40rem !important;
+    width: 35rem !important;
     margin: auto !important;
 }
 
 .fa
 {
     color: #23236A !important;
+}
+
+.profiletop img
+{
+    width: 20rem;
+    margin: auto;
+    margin-top: 2rem;
+    border-radius: 2rem;
+    border: 1px solid #23236A;
 }

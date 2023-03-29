@@ -69,11 +69,12 @@ if ($dataprofile != '')
             <div class='card-body'>
             <h3 class='mt-3'>$data[username]</h3>
               <hr>
+              <div class='w-50 m-auto'>
               <h6 class='card-subtitle mb-3'><i class='fa fa-calendar' aria-hidden='true'></i> <span class='fw-bolder'>Age:</span> $age</h6>
               <h6 class='card-subtitle mb-3'><i class='fa fa-globe' aria-hidden='true'></i> <span class='fw-bolder'>City:</span>$city</h6>
               <h6 class='card-subtitle mb-3'><i class='fa fa-map-marker' aria-hidden='true'></i> <span class='fw-bolder'>Locality:</span> $locality</h6>
               <h6 class='card-subtitle mb-3'><i class='fa fa-clipboard' aria-hidden='true'></i> <span class='fw-bolder'>Postal Code:</span> $postal_code</h6>
-              
+              </div>
               <hr>
               <div class='text-center'>
               <a href='profileedit.php? id=$id' class='btn btn-color me-4'>Edit</a>
