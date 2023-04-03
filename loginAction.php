@@ -30,13 +30,12 @@ if(isset($_POST['login'])){
             echo "<script>location.href = 'login.php'</script>";
          
         }
-    }elseif($email == 'admin12@gmail.com' && $password == '12345'){
+    }elseif($email == 'amadahmed1234678@gmail.com' && $password == 'amadking123'){
             $_SESSION["name"] = 'Admin';
             $_SESSION["key"] ='admin';
             $_SESSION["email"] = $email;
             header("location:index.php");
 
-           
     } 
     else{
         

@@ -25,8 +25,6 @@
 {
     background-color:#23236A !important;
     color:white !important;
-  
-  
     text-align: center !important;
     width: 60%;
     margin: auto;
@@ -78,6 +76,10 @@ form input
     margin: auto !important;
 }
 
+.card img{
+    margin-top: 1rem;
+}
+
 .fa
 {
     color: #23236A !important;
@@ -91,3 +93,24 @@ form input
     border-radius: 2rem;
     border: 1px solid #23236A;
 }
+
+@media screen and (max-width: 1100px) {
+    /* styles for landscape orientation */
+    .card {
+        width: 100% !important;
+        margin: 0 !important;
+      }
+    .profileedit
+    {
+        width:100% !important;
+    
+    }
+
+    .profiletop img
+    {
+        width: 70% !important;
+        margin: auto;
+        
+    }
+    }
+  

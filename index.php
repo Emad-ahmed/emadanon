@@ -200,7 +200,17 @@ session_start();
             </a>
             <a href='logout.php' class='action-btn'>
             <i class='fa fa-sign-out' aria-hidden='true'></i>
-            </a>";
+            </a>
+            <a class='action-btn'>
+            <ion-icon name='heart-outline'></ion-icon>
+            <span class='count'>0</span>
+            </a>
+            <a href='cart.php' class='action-btn'>
+            <ion-icon name='bag-handle-outline'></ion-icon>
+            <span class='count'>0</span>
+            </a> 
+           
+            ";
             
             } else{
               echo "<a href='login.php' class='action-btn'>
@@ -208,15 +218,9 @@ session_start();
               </a>";
             }
             ?>
-            <button class="action-btn">
-              <ion-icon name="heart-outline"></ion-icon>
-              <span class="count">0</span>
-            </button>
+           
 
-            <button class="action-btn">
-              <ion-icon name="bag-handle-outline"></ion-icon>
-              <span class="count">0</span>
-            </button>
+           
             
           </div>
         </div>
@@ -410,7 +414,7 @@ session_start();
 
               <ul class="dropdown-list">
                 <li class="dropdown-item">
-                  <a href="#">Dress & Frock</a>
+                  <a href="allcategory.php?category=dress">Dress & Frock</a>
                 </li>
 
                 <li class="dropdown-item">
@@ -478,6 +482,22 @@ session_start();
             <li class="menu-category">
               <a href="#" class="menu-title">Hot Offers</a>
             </li>
+
+            <?php
+        if(isset($_SESSION["name"]))
+        {
+          echo "<li class='menu-category'>
+          <a href='addproduct.php' class='menu-title'>Add Product</a>
+          </li>
+          <li class='menu-category'>
+          <a href='showproduct.php' class='menu-title'>Show Product</a>
+          </li>
+          
+          ";
+        }
+      
+        ?>
+        
           </ul>
         </div>
       </nav>
@@ -487,25 +507,32 @@ session_start();
           <ion-icon name="menu-outline"></ion-icon>
         </button>
 
-        <button class="action-btn">
-          <ion-icon name="bag-handle-outline"></ion-icon>
-
-          <span class="count">0</span>
-        </button>
-
-        <button class="action-btn">
-          <ion-icon name="home-outline"></ion-icon>
-        </button>
-
-        <button class="action-btn">
-          <ion-icon name="heart-outline"></ion-icon>
-
-          <span class="count">0</span>
-        </button>
-
-        <button class="action-btn" data-mobile-menu-open-btn>
-          <ion-icon name="grid-outline"></ion-icon>
-        </button>
+        <?php
+            if (isset($_SESSION['email']))
+            {
+              echo "<a href='profile.php' class='action-btn'>
+              <ion-icon name='person-outline'></ion-icon>
+            </a>
+            <a href='logout.php' class='action-btn'>
+            <i class='fa fa-sign-out' aria-hidden='true'></i>
+            </a>
+            <a class='action-btn'>
+            <ion-icon name='heart-outline'></ion-icon>
+            <span class='count'>0</span>
+            </a>
+            <a href='cart.php' class='action-btn'>
+            <ion-icon name='bag-handle-outline'></ion-icon>
+            <span class='count'>0</span>
+            </a> 
+           
+            ";
+            
+            } else{
+              echo "<a href='login.php' class='action-btn'>
+              <i class='fa fa-sign-in' aria-hidden='true'></i>
+              </a>";
+            }
+            ?>
       </div>
 
       <nav class="mobile-navigation-menu has-scrollbar" data-mobile-menu>
@@ -563,7 +590,7 @@ session_start();
 
             <ul class="submenu-category-list" data-accordion>
               <li class="submenu-category">
-                <a href="#" class="submenu-title">Dress & Frock</a>
+                <a href="allcategory.php?category=dress" class="submenu-title">Dress & Frock</a>
               </li>
 
               <li class="submenu-category">
@@ -816,7 +843,7 @@ session_start();
                   <p class="category-item-amount">(53)</p>
                 </div>
 
-                <a href="#" class="category-btn">Show all</a>
+                <a href="allcategory.php?category=dress" class="category-btn">Show all</a>
               </div>
             </div>
 
@@ -1036,7 +1063,7 @@ session_start();
                     </li>
 
                     <li class="sidebar-submenu-category">
-                      <a href="#" class="sidebar-submenu-title">
+                      <a href="allcategory.php?category=dress" class="sidebar-submenu-title">
                         <p class="product-name">dress & frock</p>
                         <data value="87" class="stock" title="Available Stock"
                           >87</data
@@ -1663,7 +1690,9 @@ session_start();
                           <p class="price">$61.00</p>
                           <del>$11.00</del>
                         </div>
+
                       </div>
+
                     </div>
 
                     <div class="showcase">

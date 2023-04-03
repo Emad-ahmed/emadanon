@@ -1,0 +1,40 @@
+main
+{
+    width: 90%;
+    margin: auto;
+    border: 1px solid #FFD4E2;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-top: 1rem;
+}
+
+table{
+    width: 100%;
+    margin-top: 1rem;
+}
+
+table,tr,th, td{
+    
+    border: 1px solid black;
+    text-align: center;
+}
+
+tr,th, td
+{
+    padding: 0.4rem;
+}
+
+.main h2{
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.jtable__search 
+{
+    padding-left: 0.6rem;
+}
+
+.jtable__select
+{
+    margin-bottom: 0.4rem;
+}
