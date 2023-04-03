@@ -2,13 +2,7 @@
 <link rel="stylesheet" href="assets/css/cart.css">
 <link rel="stylesheet" href="assets/css/login.css">
 
-<div id="successmessage">
-   
-</div>
 
-<div id="errormessage">
-   
-</div>
 
 <div class="container mycontain">
 <main class="cart">
@@ -33,10 +27,11 @@ $datafetchquery = mysqli_query($conn, "SELECT * FROM `user` WHERE email = '$emai
 $data = mysqli_fetch_array($datafetchquery);
 $user_id = $data['id'];
 
-$alldata = mysqli_query($conn, "SELECT * FROM user, cart, product WHERE cart.user_id = '$user_id'");
+$alldata = mysqli_query($conn, "SELECT * FROM user, product,  cart  WHERE cart.user_id = '$user_id'");
+
 
 while ($row = mysqli_fetch_array($alldata)) {
-
+    $myid = $row["id"];
     echo "
       <div class='basket-product'>
         <div class='item'>
@@ -55,7 +50,7 @@ while ($row = mysqli_fetch_array($alldata)) {
         </div>
         <div class='subtotal'>$row[price]</div>
         <div>
-          <button data-id='$row[id]' class='delete_btn'>Remove</button>
+          <button class='delete-btn' data-id='$myid'>Delete</button>
         </div>
       </div>
      
@@ -258,28 +253,23 @@ function removeItem(removeButton) {
 
 
 
-$(document).ready(function(){
-
-
-  $(document).on("click", ".delete-btn", function()
+$(document).on("click", ".delete-btn", function()
             {
                 if(confirm("Do you really want to delete this data"))
                 {
-                var student_id = $(this).data("id");
-                var element = this;
-            
+                var myid = $(this).data("id");
+                console.log(myid);
                 $.ajax({
                     type: "POST",
-                    url: "deletedata.php",
-                    data: {id:student_id},
+                    url: "deletecart.php",
+                    data: {id:myid},
                     success: function (data) {
                         if(data==1)
-                        {
-                            $(element).closest("tr").fadeOut();
+                        {   
+                            
                             $("#successmessage").html("Successfully Deleted").slideDown();
                             $("#errormessage").html("Not delete").slideUp();
-                           
-                            loaddata();
+                            window.location.href = 'cart.php';
                         } else{
                             $("#errormessage").html("Not Delte").slideDown();
                             $("#successmessage").html("Successfully Saved").slideUp();
@@ -287,14 +277,8 @@ $(document).ready(function(){
                     }
                 });
             };
-            });
+});
 
-}
-
-var value = updateSumItems();
-console.log(value);
-var valuequan = updateQuantity();
-console.log(valuequan);
 
 
 

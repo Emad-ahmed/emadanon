@@ -142,9 +142,9 @@ $category = $_GET['category'];
 
                         } else{
                             var errormessage = $("#errormessage").show();
-                            $("#errormessage").html("Not Saved").slideDown();
+                            $("#errormessage").html("Already Taken In Cart").slideDown();
                             $("#successmessage").html("Successfully Saved").slideUp();
-                            window.location.href = "insertcart.php";
+                           
                         }
                     }
                 });
