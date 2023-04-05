@@ -2,7 +2,36 @@
 <?php
 
 session_start();
+
 ?>
+
+<?php
+        include 'config.php';
+
+        
+
+        if(isset($_SESSION['email']) && !isset($_SESSION["name"]))
+        {
+
+          $email = $_SESSION['email'];
+          $datafetchquery = mysqli_query($conn, "SELECT * FROM `user` WHERE email = '$email'");
+          $data = mysqli_fetch_array($datafetchquery);
+          $user_id = $data['id'];
+
+
+          $sql = "SELECT * from cart WHERE cart.user_id = '$user_id'";
+
+          if ($result = mysqli_query($conn, $sql)) {
+  
+              // Return the number of rows in result set
+              $rowcount = mysqli_num_rows( $result );
+            
+          }
+        }
+
+       
+        ?>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -193,7 +222,7 @@ session_start();
           
           <div class="header-user-actions">
             <?php
-            if (isset($_SESSION['email']))
+            if (isset($_SESSION['email']) && !isset($_SESSION["name"]))
             {
               echo "<a href='profile.php' class='action-btn'>
               <ion-icon name='person-outline'></ion-icon>
@@ -207,7 +236,7 @@ session_start();
             </a>
             <a href='cart.php' class='action-btn'>
             <ion-icon name='bag-handle-outline'></ion-icon>
-            <span class='count'>0</span>
+            <span class='count'>$rowcount</span>
             </a> 
            
             ";
@@ -406,6 +435,9 @@ session_start();
                 <li class="dropdown-item">
                   <a href="#">Wallet</a>
                 </li>
+                <li class="dropdown-item">
+                  <a href="allcategory.php?category=blazer">BLAZER</a>
+                </li>
               </ul>
             </li>
 
@@ -508,7 +540,7 @@ session_start();
         </button>
 
         <?php
-            if (isset($_SESSION['email']))
+            if (($_SESSION['email']) && !isset($_SESSION["name"]))
             {
               echo "<a href='profile.php' class='action-btn'>
               <ion-icon name='person-outline'></ion-icon>
@@ -522,7 +554,7 @@ session_start();
             </a>
             <a href='cart.php' class='action-btn'>
             <ion-icon name='bag-handle-outline'></ion-icon>
-            <span class='count'>0</span>
+            <span class='count'>$rowcount</span>
             </a> 
            
             ";
@@ -1561,224 +1593,84 @@ session_start();
 
                 <div class="showcase-wrapper has-scrollbar">
                   <div class="showcase-container">
-                    <div class="showcase">
-                      <a href="#" class="showcase-img-box">
+                  <?php
+        
+                  $alldata = mysqli_query($conn, "SELECT * FROM `product` WHERE category = 'dress'  ORDER BY id DESC LIMIT 4");
+
+                  while ($row = mysqli_fetch_array($alldata)) {
+                    echo "<div class='showcase'>
+                      <a href='#' class='showcase-img-box'>
                         <img
-                          src="./assets/images/products/clothes-1.jpg"
-                          alt="relaxed short full sleeve t-shirt"
-                          width="70"
-                          class="showcase-img"
+                          src='$row[front_image]'
+                          alt='relaxed short full sleeve t-shirt'
+                          width='70'
+                          class='showcase-img'
                         />
                       </a>
 
-                      <div class="showcase-content">
-                        <a href="#">
-                          <h4 class="showcase-title">
-                            Relaxed Short full Sleeve T-Shirt
+                      <div class='showcase-content'>
+                        <a href=''#'>
+                          <h4 class='showcase-title'>
+                            $row[title]
                           </h4>
                         </a>
 
-                        <a href="#" class="showcase-category">Clothes</a>
+                        <a href='#' class='showcase-category'>Clothes</a>
 
-                        <div class="price-box">
-                          <p class="price">$45.00</p>
-                          <del>$12.00</del>
+                        <div class='price-box'>
+                          <p class='price'>$$row[price]</p>
+                          <del>$$row[discount_price]</del>
                         </div>
                       </div>
-                    </div>
+                    </div>";
+                  }
 
-                    <div class="showcase">
-                      <a href="#" class="showcase-img-box">
-                        <img
-                          src="./assets/images/products/clothes-2.jpg"
-                          alt="girls pink embro design top"
-                          class="showcase-img"
-                          width="70"
-                        />
-                      </a>
-
-                      <div class="showcase-content">
-                        <a href="#">
-                          <h4 class="showcase-title">
-                            Girls pnk Embro design Top
-                          </h4>
-                        </a>
-
-                        <a href="#" class="showcase-category">Clothes</a>
-
-                        <div class="price-box">
-                          <p class="price">$61.00</p>
-                          <del>$9.00</del>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="showcase">
-                      <a href="#" class="showcase-img-box">
-                        <img
-                          src="./assets/images/products/clothes-3.jpg"
-                          alt="black floral wrap midi skirt"
-                          class="showcase-img"
-                          width="70"
-                        />
-                      </a>
-
-                      <div class="showcase-content">
-                        <a href="#">
-                          <h4 class="showcase-title">
-                            Black Floral Wrap Midi Skirt
-                          </h4>
-                        </a>
-
-                        <a href="#" class="showcase-category">Clothes</a>
-
-                        <div class="price-box">
-                          <p class="price">$76.00</p>
-                          <del>$25.00</del>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="showcase">
-                      <a href="#" class="showcase-img-box">
-                        <img
-                          src="./assets/images/products/shirt-1.jpg"
-                          alt="pure garment dyed cotton shirt"
-                          class="showcase-img"
-                          width="70"
-                        />
-                      </a>
-
-                      <div class="showcase-content">
-                        <a href="#">
-                          <h4 class="showcase-title">
-                            Pure Garment Dyed Cotton Shirt
-                          </h4>
-                        </a>
-
-                        <a href="#" class="showcase-category">Mens Fashion</a>
-
-                        <div class="price-box">
-                          <p class="price">$68.00</p>
-                          <del>$31.00</del>
-                        </div>
-                      </div>
-                    </div>
+                    ?>
+                    
                   </div>
 
                   <div class="showcase-container">
-                    <div class="showcase">
-                      <a href="#" class="showcase-img-box">
-                        <img
-                          src="./assets/images/products/jacket-5.jpg"
-                          alt="men yarn fleece full-zip jacket"
-                          class="showcase-img"
-                          width="70"
-                        />
-                      </a>
+                  <?php
+        
+        $alldata = mysqli_query($conn, "SELECT * FROM `product` WHERE category = 'blazer'  ORDER BY id DESC LIMIT 4");
 
-                      <div class="showcase-content">
-                        <a href="#">
-                          <h4 class="showcase-title">
-                            MEN Yarn Fleece Full-Zip Jacket
-                          </h4>
-                        </a>
+        while ($row = mysqli_fetch_array($alldata)) {
+          echo "<div class='showcase'>
+            <a href='#' class='showcase-img-box'>
+              <img
+                src='$row[front_image]'
+                alt='relaxed short full sleeve t-shirt'
+                width='70'
+                class='showcase-img'
+              />
+            </a>
 
-                        <a href="#" class="showcase-category">Winter wear</a>
+            <div class='showcase-content'>
+              <a href=''#'>
+                <h4 class='showcase-title'>
+                  $row[title]
+                </h4>
+              </a>
 
-                        <div class="price-box">
-                          <p class="price">$61.00</p>
-                          <del>$11.00</del>
-                        </div>
+              <a href='#' class='showcase-category'>Clothes</a>
 
-                      </div>
+              <div class='price-box'>
+                <p class='price'>$$row[price]</p>
+                <del>$$row[discount_price]</del>
+              </div>
+            </div>
+          </div>";
+        }
 
-                    </div>
-
-                    <div class="showcase">
-                      <a href="#" class="showcase-img-box">
-                        <img
-                          src="./assets/images/products/jacket-1.jpg"
-                          alt="mens winter leathers jackets"
-                          class="showcase-img"
-                          width="70"
-                        />
-                      </a>
-
-                      <div class="showcase-content">
-                        <a href="#">
-                          <h4 class="showcase-title">
-                            Mens Winter Leathers Jackets
-                          </h4>
-                        </a>
-
-                        <a href="#" class="showcase-category">Winter wear</a>
-
-                        <div class="price-box">
-                          <p class="price">$32.00</p>
-                          <del>$20.00</del>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="showcase">
-                      <a href="#" class="showcase-img-box">
-                        <img
-                          src="./assets/images/products/jacket-3.jpg"
-                          alt="mens winter leathers jackets"
-                          class="showcase-img"
-                          width="70"
-                        />
-                      </a>
-
-                      <div class="showcase-content">
-                        <a href="#">
-                          <h4 class="showcase-title">
-                            Mens Winter Leathers Jackets
-                          </h4>
-                        </a>
-
-                        <a href="#" class="showcase-category">Jackets</a>
-
-                        <div class="price-box">
-                          <p class="price">$50.00</p>
-                          <del>$25.00</del>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="showcase">
-                      <a href="#" class="showcase-img-box">
-                        <img
-                          src="./assets/images/products/shorts-1.jpg"
-                          alt="better basics french terry sweatshorts"
-                          class="showcase-img"
-                          width="70"
-                        />
-                      </a>
-
-                      <div class="showcase-content">
-                        <a href="#">
-                          <h4 class="showcase-title">
-                            Better Basics French Terry Sweatshorts
-                          </h4>
-                        </a>
-
-                        <a href="#" class="showcase-category">Shorts</a>
-
-                        <div class="price-box">
-                          <p class="price">$20.00</p>
-                          <del>$10.00</del>
-                        </div>
-                      </div>
-                    </div>
+        ?>
                   </div>
                 </div>
               </div>
 
+
+
               <div class="product-showcase">
                 <h2 class="title">Trending</h2>
-
                 <div class="showcase-wrapper has-scrollbar">
                   <div class="showcase-container">
                     <div class="showcase">

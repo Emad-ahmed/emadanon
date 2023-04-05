@@ -27,16 +27,18 @@ $datafetchquery = mysqli_query($conn, "SELECT * FROM `user` WHERE email = '$emai
 $data = mysqli_fetch_array($datafetchquery);
 $user_id = $data['id'];
 
-$alldata = mysqli_query($conn, "SELECT * FROM user, product,  cart  WHERE cart.user_id = '$user_id'");
-
+$alldata = mysqli_query($conn, "SELECT * FROM  product, cart where cart.product_id  = product.id AND cart.user_id = '$user_id'");
+$myprce = 0;
 
 while ($row = mysqli_fetch_array($alldata)) {
     $myid = $row["id"];
+    $myprce += $row["price"];
+    $_SESSION['ipr'] = $myprce;
     echo "
       <div class='basket-product'>
         <div class='item'>
           <div class='product-image'>
-            <img src='$row[image]' alt='Placholder Image 2' class='product-frame'>
+            <img src='$row[front_image]' alt='Placholder Image 2' class='product-frame'>
           </div>
           <div class='product-details'>
             <h1><strong><span class='item-quantity'>1</span> x $row[title]</strong> $row[description]</h1>
@@ -49,7 +51,7 @@ while ($row = mysqli_fetch_array($alldata)) {
           <input type='number' value='1' min='1' class='quantity-field'>
         </div>
         <div class='subtotal'>$row[price]</div>
-        <div>
+        <div class='remove'>
           <button class='delete-btn' data-id='$myid'>Delete</button>
         </div>
       </div>
@@ -66,7 +68,7 @@ while ($row = mysqli_fetch_array($alldata)) {
         <div class="summary-total-items"><span class="total-items"></span> Items in your Bag</div>
         <div class="summary-subtotal">
           <div class="subtotal-title">Subtotal</div>
-          <div class="subtotal-value final-value" id="basket-subtotal"></div>
+          <div class="subtotal-value final-value" id="basket-subtotal"><?php echo $_SESSION['ipr'] ?></div>
           <div class="summary-promo hide">
             <div class="promo-title">Promotion</div>
             <div class="promo-value final-value" id="basket-promo"></div>
@@ -83,7 +85,7 @@ while ($row = mysqli_fetch_array($alldata)) {
         </div>
         <div class="summary-total">
           <div class="total-title">Total</div>
-          <div class="total-value final-value" id="basket-total"></div>
+          <div class="total-value final-value" id="basket-total"><?php echo $_SESSION['ipr'] ?></div>
         </div>
         <div class="summary-checkout">
           <a href="checkout.php"  class="checkout-cta">Go to Secure Checkout</a>
@@ -217,39 +219,6 @@ function updateSumItems() {
   return sumItems;
 }
 
-/* Remove item from cart */
-function removeItem(removeButton) {
-  /* Remove row from DOM and recalc cart total */
-  var productRow = $(removeButton).parent().parent();
-  var cart_id = $(this).data("id");
-  productRow.slideUp(fadeTime, function () {
-    $.ajax({
-      type: "POST",
-      url: "deletecart.php",
-      data: {id:cart_id},
-     
-      success: function (response) {
-        if(data==1)
-                {
-                productRow.remove();
-                recalculateCart();
-                updateSumItems();
-                var succesmessage = $("#successmessage").show();
-                $("#successmessage").html("Successfully Deleted").slideDown();
-                $("#errormessage").html("Not delete").slideUp();
-        }else{
-              var errormessage = $("#errormessage").show();
-              $("#errormessage").html("Not Delte").slideDown();
-              $("#successmessage").html("Successfully Saved").slideUp();
-          }
-      }
-    });
-    
-  });
-  
-
-  
-}
 
 
 

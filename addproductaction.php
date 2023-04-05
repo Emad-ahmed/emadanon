@@ -10,7 +10,7 @@ $discount = $_POST['discount'];
 $category = $_POST['category'];
 $fimage = $_FILES['fimage'];
 $bimage = $_FILES['bimage'];
-$prodcode = $_FILES['prodcode'];
+$prodcode = $_POST['prodcode'];
 
 
   
@@ -25,7 +25,7 @@ $imageDesbackend = 'ProductImage/' . $imageName;
 move_uploaded_file($imageLocation, $imageDesbackend);
 
 
-$insert_product = mysqli_query($conn, "INSERT INTO `product`(`title`, `description`, `price`, `discount_price`, `category`, `discount`, `front_image`, `back_image`, `prodcode`) VALUES ('$title','$description','$price','$desprice','$category', '$discount', '$imageDesfronted','$imageDesbackend', '$prodcode')");
+$insert_product = mysqli_query($conn, "INSERT INTO `product`(`title`, `description`, `price`, `discount_price`, `category`, `discount`, `front_image`, `back_image`, `product_code`) VALUES ('$title','$description','$price','$desprice','$category', '$discount', '$imageDesfronted','$imageDesbackend', '$prodcode')");
 
 
 if ($insert_product) {

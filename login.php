@@ -25,7 +25,7 @@
 
             
 
-            <input type="submit" value="Login In" name="login" id="submit">
+            <input type="submit" value="Login" name="login" id="submit">
 
             <div>
                 <p class="have-account-line text-center">Create New Account? <a href="signup.php">Sign Up</a></p>

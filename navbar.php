@@ -19,6 +19,9 @@ session_start();
 
 </style>
 
+
+
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -172,7 +175,7 @@ session_start();
           
           <div class="header-user-actions">
             <?php
-            if (isset($_SESSION['email']))
+            if (isset($_SESSION['email']) && !isset($_SESSION["name"]))
             {
               echo "<a href='profile.php' class='action-btn'>
               <ion-icon name='person-outline'></ion-icon>
@@ -186,7 +189,7 @@ session_start();
             </a>
             <a href='cart.php' class='action-btn'>
             <ion-icon name='bag-handle-outline'></ion-icon>
-            <span class='count'>0</span>
+            <span class='count' id='rowcount'></span>
             </a> 
            
             ";
@@ -385,6 +388,9 @@ session_start();
                 <li class="dropdown-item">
                   <a href="#">Wallet</a>
                 </li>
+                <li class="dropdown-item">
+                  <a href="allcategory.php?category=blazer">BLAZER</a>
+                </li>
               </ul>
             </li>
 
@@ -487,7 +493,7 @@ session_start();
         </button>
 
         <?php
-            if (isset($_SESSION['email']))
+            if (isset($_SESSION['email']) && !isset($_SESSION["name"]))
             {
               echo "<a href='profile.php' class='action-btn'>
               <ion-icon name='person-outline'></ion-icon>
@@ -501,7 +507,7 @@ session_start();
             </a>
             <a href='cart.php' class='action-btn'>
             <ion-icon name='bag-handle-outline'></ion-icon>
-            <span class='count'>0</span>
+            <span class='count' id='rowcount'></span>
             </a> 
            
             ";
@@ -801,6 +807,27 @@ session_start();
     - custom js link
   -->
     <script src="./assets/js/script.js"></script>
+
+   
+
+    <script src="assets/js/jquery-3.6.4.js"></script>
+    <script>
+  $(document).ready(function()
+  {
+    function loaddata(){
+                $.ajax({
+                    type: "POST",
+                    url: "showcartnumber.php",
+                    success: function (data) {
+                        $("#rowcount").html(data);
+                    }
+                });
+            };
+            loaddata();
+  });
+
+
+</script>
 
     <!--
     - ionicon link

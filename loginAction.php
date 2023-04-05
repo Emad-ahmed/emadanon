@@ -23,7 +23,9 @@ if(isset($_POST['login'])){
                 $info = "It's look like you haven't still verify your email - $email";
                 echo "<script>alert('It's look like you haven't still verify your email - $email')</script>";
                 $_SESSION['info'] = $info;
-                header('location: index.php');
+                echo "<script>alert('Incorrect email or password!!')</script>";
+                echo "<script>location.href = 'login.php'</script>";
+               
             }
         }else{
             echo "<script>alert('Incorrect email or password!!')</script>";

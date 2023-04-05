@@ -34,7 +34,7 @@
 }
 
 .cart button {
-  background-color: #FF8F9C;
+  background-color: rgb(243, 52, 84);
   color: #fff;
 }
 
@@ -174,15 +174,31 @@ aside {
   position: absolute;
   right: 0;
   text-align: right;
-  width: 45%;
+ 
+ 
+ 
+  
 }
 
 .remove button {
   background-color: transparent;
-  color: #777;
+  color: white;
   float: none;
-  text-decoration: underline;
+  text-decoration: none !important;
   text-transform: uppercase;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  background: red;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  transition: 0.5s;
+}
+
+.remove button:hover
+{
+  background: white !important;
+  border: 1px solid red !important;
+  color: red !important;
 }
 
 .item-heading {
@@ -367,9 +383,11 @@ aside {
     text-align: left;
     margin-top: 0.75rem;
     position: relative;
+    
   }
   .remove button {
     padding: 0;
+    
   }
   .summary {
     margin-top: 1.25rem;
@@ -413,7 +431,11 @@ aside {
 
 .summary-checkout a{
   
-    background-color: #FF8F9C;
+    background-color: #f0354b;
     color: #fff;
   
+}
+
+.summary-checkout a:hover{
+  color: #111;
 }

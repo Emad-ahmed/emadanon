@@ -22,6 +22,7 @@ $category = $_GET['category'];
         width:100% !important;
     }
 </style>
+<div id="myhead"></div>
 <div id="successmessage">
    
 </div>
@@ -30,7 +31,8 @@ $category = $_GET['category'];
    
 </div>
 
-<div class="container">
+
+<div class="container" >
 <div class="product-main">
               <h2 class="title text-center"><?php echo $category  ?></h2>
 
@@ -122,8 +124,20 @@ $category = $_GET['category'];
 <script src="assets/js/jquery-3.6.4.js"></script>
     <script>
         $(document).ready(function(){
-            var succesmessage = $("#successmessage").hide();
-            var errormessage = $("#errormessage").hide();
+          
+      function loaddata(){
+                $.ajax({
+                    type: "POST",
+                    url: "showcartnumber.php",
+                    success: function (data) {
+                        $("#rowcount").html(data);
+                    }
+                });
+            };
+            loaddata();
+  
+
+           
             $(document).on("click", "#cartaction", function()
             {
 
@@ -136,15 +150,23 @@ $category = $_GET['category'];
                     success: function (data) {
                         if(data==1)
                         {
-                          var succesmessage = $("#successmessage").show();
+                            var succesmessage = $("#successmessage").show();
                             $("#successmessage").html("Successfully Saved").slideDown();
                             $("#errormessage").html("Not Saved").slideUp();
-
+                            loaddata();
+                            $('html, body').animate({
+                                scrollTop: $("#myhead").offset().top
+                            }, 10);
+                            
+                        
                         } else{
                             var errormessage = $("#errormessage").show();
-                            $("#errormessage").html("Already Taken In Cart").slideDown();
+                            $("#errormessage").html("Failed To add cart").slideDown();
                             $("#successmessage").html("Successfully Saved").slideUp();
-                           
+                            $('html, body').animate({
+                                scrollTop: $("#myhead").offset().top
+                            }, 10);
+                            
                         }
                     }
                 });

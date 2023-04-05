@@ -14,7 +14,7 @@
 
 
 
-<div class="container">
+<div class="container" id="myhead">
     
         <form  class="sign-form" id="sign-form">
             <h1 class="form-title ">Add Product</h1>
@@ -47,7 +47,7 @@
             <select class="form-select" aria-label="Default select example" name="category">
             <option value="electronics">Electronics</option>
             <option value="desktop">Desktop</option>
-            <option value="dress">Dress</option>
+            <option value="dress">Mens</option>
             <option value="camera">Camera</option>
             <option value="headphone">Headphone</option>
             <option value="dress">Dress</option>
@@ -112,6 +112,7 @@
                         processData: false,
                         success: function(data) {
                             $("#successmessage").html("Successfully Saved").slideDown();
+                            $("form").trigger("reset");
                             var succesmessage = $("#successmessage").show();
                             $("#errormessage").html("Not delete").slideUp();
                             $('html, body').animate({

@@ -3,8 +3,9 @@ include 'config.php';
 
 session_start();
 
-
-$id = $_POST['id'];
+if(isset($_SESSION['email']))
+{
+    $id = $_POST['id'];
 $email = $_SESSION['email'];
 
 $datafetchquery = mysqli_query($conn, "SELECT * FROM `user` WHERE email = '$email'");
@@ -16,7 +17,7 @@ $datafetchproduct = mysqli_query($conn, "SELECT * FROM `product` WHERE id = '$id
 $datapro = mysqli_fetch_array($datafetchproduct);
 $mycatview = $datapro["category"];
 
-$_duplicate_cart = mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id = '$user_id' AND product_id  = '$id'");
+$_duplicate_cart = mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id='$user_id' AND product_id='$id'");
 
 if (mysqli_num_rows($_duplicate_cart) > 0) {
     echo "<script>location.href = 'cart.php'</script>";
@@ -28,6 +29,12 @@ if (mysqli_num_rows($_duplicate_cart) > 0) {
         echo 0;
     }
 }
+
+} else{
+    echo "<script>location.href = 'login.php'</script>";
+}
+
+
 
 
 ?>
